@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Invertis University — Admission Registration</title>
+  <meta name="description" content="Invertis University Admission Registration Form — Apply online for UG, PG, Diploma & Professional courses." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+  
+  <style>
+    :root{
+      --blue-900:#00305a;
+      --blue-700:#0066cc;
+      --blue-500:#1e90ff;
+      --muted:#6b7280;
+      --card-bg: rgba(255,255,255,0.96);
+      --radius: 12px;
+      --max-width: 1000px;
+      --accent: var(--blue-700);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      background: linear-gradient(180deg, rgba(4,20,45,0.92) 0%, rgba(6,40,85,0.92) 60%), url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+      color:#0b1220;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:40px 20px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      gap:30px;
+    }
+
+    .site {
+      width:100%;
+      max-width: var(--max-width);
+      display:grid;
+      grid-template-columns: 380px 1fr;
+      gap: 28px;
+      align-items:start;
+    }
+
+    .brand {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border-radius: var(--radius);
+      padding:28px;
+      color: white;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      min-height: 420px;
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .logo {
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .logo .emblem{
+      width:64px;height:64px;border-radius:12px;
+      background:linear-gradient(135deg,var(--blue-700),var(--blue-500));
+      display:flex;align-items:center;justify-content:center;color:white;font-size:28px;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.5);
+    }
+    .logo h1{
+      margin:0;font-size:20px;line-height:1.05;font-weight:700;color:white;
+    }
+    .logo p{margin:0;color:rgba(255,255,255,0.85);font-size:13px}
+
+    .brand .desc { color: rgba(255,255,255,0.9); font-size:14px; line-height:1.5; }
+    .brand .info { margin-top:auto; font-size:13px; color: rgba(255,255,255,0.85); }
+    .pill { display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.08); color:#dbeafe;font-weight:600;font-size:13px; }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: 0 12px 30px rgba(2,6,23,0.45);
+      border: 1px solid rgba(2,6,23,0.06);
+      overflow:auto;
+      max-height: calc(100vh - 120px);
+    }
+
+    .card h2{
+      margin:0 0 10px 0;font-size:20px;color:var(--blue-900);
+    }
+    .card p.lead{margin:0 0 18px 0;color:var(--muted);font-size:14px}
+
+    form { display:grid; grid-template-columns: repeat(2, 1fr); gap:14px; align-items:start; }
+    form .full { grid-column: 1 / -1; }
+    label { display:block; font-size:13px; color:#0b1220; margin-bottom:6px; font-weight:600; }
+    input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select, textarea, input[type="file"] {
+      width:100%; padding:10px 12px; border-radius:8px; border:1px solid #d1d5db; background:white; font-size:14px;
+      box-shadow:none; outline:none;
+    }
+    textarea{ min-height:96px; resize:vertical; }
+    .gender { display:flex; gap:12px; align-items:center; }
+
+    .form-actions { display:flex; gap:12px; align-items:center; grid-column: 1 / -1; justify-content:flex-end; margin-top:4px; }
+    .btn {
+      padding:11px 18px; border-radius:10px; border:none; cursor:pointer; font-weight:700; font-size:14px;
+      background: linear-gradient(90deg,var(--blue-700),var(--blue-500)); color:white; box-shadow: 0 8px 20px rgba(6,43,94,0.2);
+    }
+    .btn.ghost { background:transparent; color:var(--blue-700); border:1px solid rgba(2,6,23,0.06); box-shadow:none; }
+
+    .col { display:flex; flex-direction:column; gap:6px; }
+    .muted { color:var(--muted); font-size:13px; }
+
+    @media (max-width:980px){
+      .site { grid-template-columns: 1fr; }
+      form { grid-template-columns: 1fr; }
+      .brand { order:2; }
+    }
+
+    @media (max-width:420px){
+      body{ padding:20px 12px; }
+      .card { padding:18px; }
+      .brand { padding:18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site" role="main">
+    <aside class="brand" aria-labelledby="brand-title">
+      <div class="logo" id="brand-title">
+        <div class="emblem">IU</div>
+        <div>
+          <h1>Invertis University</h1>
+          <p>Admission Registration Portal</p>
+        </div>
+      </div>
+
+      <div class="desc">
+        Apply online for UG, PG, Diploma &amp; Professional courses. Fill complete details and upload required documents.
+      </div>
+
+      <div class="pill">Admissions Open</div>
+
+      <div class="info">
+        <div class="muted">Contact</div>
+        <div style="margin-top:8px">
+          <div style="font-weight:700">Admissions Office</div>
+          <div class="muted">admissions@invertisuniversity.edu | +91 98765 43210</div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="card" aria-labelledby="form-title">
+      <h2 id="form-title">Admission Registration Form</h2>
+      <p class="lead">Complete the form below. Fields marked required must be filled. Documents accepted: JPG/PNG (photo), PDF (academic).</p>
+
+      <!-- ✅ Formspree direct submission (no JS, no error) -->
+     <form action="https://formspree.io/f/mdkynadw" method="POST" enctype="multipart/form-data">
+  <input type="hidden" name="_next" value="https://invertisuniversity.in/thankyou.html">
+ 
+
+        <div class="col">
+          <label for="fullname">Full Name</label>
+          <input id="fullname" name="fullname" type="text" placeholder="Your full name" required>
+        </div>
+
+        <div class="col">
+          <label for="dob">Date of Birth</label>
+          <input id="dob" name="dob" type="date" required>
+        </div>
+
+        <div class="col">
+          <label>Gender</label>
+          <div class="gender">
+            <label><input type="radio" name="gender" value="Male" required> Male</label>
+            <label><input type="radio" name="gender" value="Female"> Female</label>
+            <label><input type="radio" name="gender" value="Other"> Other</label>
+          </div>
+        </div>
+
+        <div class="col">
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" placeholder="name@example.com" required>
+        </div>
+
+        <div class="col">
+          <label for="phone">Phone Number</label>
+          <input id="phone" name="phone" type="tel" placeholder="+91 9XXXXXXXXX" required>
+        </div>
+
+        <div class="full">
+          <label for="address">Street Address</label>
+          <input id="address" name="address" type="text" placeholder="House no, street, locality" required>
+        </div>
+
+        <div class="col">
+          <label for="city">City</label>
+          <input id="city" name="city" type="text" placeholder="City / Town" required>
+        </div>
+
+        <div class="col">
+          <label for="state">State / Union Territory</label>
+          <select id="state" name="state" required>
+            <option value="">-- Select State / UT --</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Gujarat">Gujarat</option>
+            <!-- etc... -->
+          </select>
+        </div>
+
+        <div class="col">
+          <label for="zip">Postal / ZIP Code</label>
+          <input id="zip" name="zip" type="text" placeholder="PIN / ZIP" required>
+        </div>
+
+        <div class="full">
+          <label for="course">Select Course / Program</label>
+          <select id="course" name="course" required>
+            <option value="">-- Select a Program --</option>
+            <option value="BCA">BCA</option>
+            <option value="B.Tech">B.Tech</option>
+            <option value="MBA">MBA</option>
+            <option value="MCA">MCA</option>
+          </select>
+        </div>
+
+        <div class="col">
+          <label for="qualification">Highest Qualification</label>
+          <select id="qualification" name="qualification" required>
+            <option value="">-- Select Qualification --</option>
+            <option value="12th">12th</option>
+            <option value="Bachelor">Bachelor's</option>
+            <option value="Master">Master's</option>
+          </select>
+        </div>
+
+        <div class="col">
+          <label for="institution">Last Attended Institution</label>
+          <input id="institution" name="institution" type="text" placeholder="Institution name" required>
+        </div>
+
+        <div class="col">
+          <label for="photo">Upload Photo (JPG/PNG)</label>
+          <input id="photo" name="photo" type="file" accept="image/*" required>
+        </div>
+
+        <div class="col">
+          <label for="document">Upload Academic Documents (PDF)</label>
+          <input id="document" name="document" type="file" accept=".pdf" required>
+        </div>
+
+        <div class="full">
+          <label for="message">Message / Additional Details</label>
+          <textarea id="message" name="message" placeholder="Anything you'd like to tell us..."></textarea>
+        </div>
+
+        <div class="form-actions full">
+          <button type="reset" class="btn ghost">Reset</button>
+          <button type="submit" class="btn">Submit Application</button>
+        </div>
+      </form>
+    </section>
+  </div>
+    <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- 👇 Ye script sabse neeche daalo -->
+  <script>
+    const form = document.querySelector("form");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        alert("✅ Thank you! Your form has been submitted successfully.");
+        form.reset();
+      } else {
+        alert("⚠️ Something went wrong. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>
+</body>
+</html>
